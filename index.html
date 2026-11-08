@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DANS3an* // 丹參在這 (Visual Awakening)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: 藝術手寫襯線、特粗黑體、像素字、等寬字 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Dela+Gothic+One&family=DotGothic16&family=Noto+Sans+TC:wght@900&family=Playfair+Display:ital,wght@1,600&family=Silkscreen:wght@700&family=Space+Mono:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            acid: {
+              lime: '#B7FF2A',
+              yellow: '#FFEE00',
+              pink: '#FF007F',
+              cyan: '#00F0FF',
+              blue: '#0022FF',
+            },
+            shroom: {
+              hotpink: '#FF007F',
+              dark: '#111111'
+            }
+          },
+          fontFamily: {
+            dela: ['"Dela Gothic One"', 'cursive'],
+            tcHeavy: ['"Noto Sans TC"', 'sans-serif'],
+            cinzel: ['Cinzel', 'serif'],
+            playfair: ['"Playfair Display"', 'serif'],
+            pixel: ['Silkscreen', 'monospace'],
+            mono: ['"Space Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Aero 晶透藍色立體像素游標 (精準向量還原) */
+    * {
+      cursor: url("data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='aeroGlass' x1='2' y1='2' x2='22' y2='24' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%23FFFFFF'/%3E%3Cstop offset='35%25' stop-color='%23E1F3FE'/%3E%3Cstop offset='75%25' stop-color='%2389C6F6'/%3E%3Cstop offset='100%25' stop-color='%233B82D8'/%3E%3C/linearGradient%3E%3Cfilter id='aeroShadow' x='0' y='0' width='36' height='36' filterUnits='userSpaceOnUse'%3E%3CfeDropShadow dx='1.5' dy='2' stdDeviation='1.5' flood-color='%23051433' flood-opacity='0.45'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23aeroShadow)'%3E%3Cpath d='M3 3 L3 26 L8 21 L13 31 L18 29 L13 19 L21 19 Z' fill='url(%23aeroGlass)' stroke='%230A2463' stroke-width='2' stroke-linejoin='miter' stroke-linecap='square'/%3E%3Cpath d='M4.5 5.5 L4.5 23 L8.2 19.3 L12.8 28.5 L15.5 27.2 L11.2 18 L18.5 18 Z' fill='none' stroke='white' stroke-width='1' opacity='0.8'/%3E%3Ccircle cx='4.5' cy='6' r='1.5' fill='white' filter='drop-shadow(0 0 2px white)'/%3E%3C/g%3E%3C/svg%3E"), auto !important;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-color: #FFFFFF;
+    }
+
+    /* 第一頁酸性發光背景 */
+    .pawnshop-bg {
+      background: radial-gradient(circle at 50% 45%, #FFEE00 0%, #B7FF2A 40%, #00F0FF 75%, #0A0A0A 100%);
+    }
+
+    /* 丹參在這：立體鮮桃紅帶黃邊金屬橫割字效 */
+    .pawnshop-title {
+      color: #FF007F;
+      -webkit-text-stroke: 1.5px #FFEE00;
+      text-shadow: 
+        3px 3px 0px #00F0FF,
+        6px 6px 0px #0A0A0A,
+        0 0 25px rgba(255, 0, 127, 0.7);
+    }
+    @media (min-width: 768px) {
+      .pawnshop-title {
+        -webkit-text-stroke: 3px #FFEE00;
+        text-shadow: 
+          6px 6px 0px #00F0FF,
+          12px 12px 0px #0A0A0A,
+          0 0 35px rgba(255, 0, 127, 0.85);
+      }
+    }
+
+    /* 彩虹愛心 */
+    .rainbow-heart {
+      background: linear-gradient(135deg, #FF007F 0%, #FFEE00 50%, #00F0FF 100%);
+    }
+
+    /* 氣泡果凍貼紙 (日文「何を知りたいの？」) */
+    .bubble-sticker {
+      background: #00F0FF;
+      color: #FFEE00;
+      -webkit-text-stroke: 2px #FF007F;
+      text-shadow: 2px 2px 0px #FF007F;
+      box-shadow: 4px 4px 0px #FF007F, inset 0 2px 4px rgba(255,255,255,0.8);
+    }
+
+    /* 頭後渲染光暈 */
+    .trichrome-glow {
+      background: radial-gradient(circle at 50% 45%, rgba(255, 238, 0, 0.9) 0%, rgba(255, 0, 127, 0.75) 45%, rgba(0, 240, 255, 0.7) 70%, transparent 95%);
+      filter: blur(36px);
+    }
+
+    /* 樹脂頭像懸停致幻變色特效 */
+    .resin-hover-shift {
+      transition: filter 0.35s ease, transform 0.35s ease;
+    }
+    .resin-hover-shift:hover {
+      filter: hue-rotate(190deg) saturate(220%) contrast(125%) drop-shadow(0 0 35px #00F0FF);
+      transform: scale(1.06) rotate(-2deg);
+    }
+
+    /* 喜歡的人們 1-7 位彩虹色相濾鏡 */
+    .rainbow-hover-1:hover { filter: blur(0px) hue-rotate(330deg) saturate(250%) contrast(120%) drop-shadow(0 0 25px rgba(255, 0, 50, 0.7)) !important; }
+    .rainbow-hover-2:hover { filter: blur(0px) hue-rotate(30deg) saturate(250%) contrast(120%) drop-shadow(0 0 25px rgba(255, 120, 0, 0.7)) !important; }
+    .rainbow-hover-3:hover { filter: blur(0px) hue-rotate(70deg) saturate(280%) contrast(120%) drop-shadow(0 0 25px rgba(255, 230, 0, 0.8)) !important; }
+    .rainbow-hover-4:hover { filter: blur(0px) hue-rotate(110deg) saturate(250%) contrast(120%) drop-shadow(0 0 25px rgba(0, 255, 100, 0.7)) !important; }
+    .rainbow-hover-5:hover { filter: blur(0px) hue-rotate(180deg) saturate(250%) contrast(120%) drop-shadow(0 0 25px rgba(0, 220, 255, 0.8)) !important; }
+    .rainbow-hover-6:hover { filter: blur(0px) hue-rotate(240deg) saturate(260%) contrast(120%) drop-shadow(0 0 25px rgba(50, 80, 255, 0.8)) !important; }
+    .rainbow-hover-7:hover { filter: blur(0px) hue-rotate(290deg) saturate(260%) contrast(120%) drop-shadow(0 0 25px rgba(200, 40, 255, 0.8)) !important; }
+
+    /* 第四張長輩圖狂躁拼貼爆裂視覺背景 */
+    .burst-pattern {
+      background-color: #FFEE00;
+      background-image: 
+        radial-gradient(#FF007F 2.5px, transparent 2.5px),
+        linear-gradient(45deg, rgba(0,240,255,0.2) 25%, transparent 25%, transparent 75%, rgba(0,240,255,0.2) 75%);
+      background-size: 24px 24px, 48px 48px;
+    }
+
+    /* 七彩氣泡與十字閃爍星芒動畫 */
+    .sparkle-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      animation: floatFade 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes floatFade {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+      }
+      50% {
+        opacity: 0.9;
+        transform: translate(-50%, calc(-50% - 15px)) scale(1.1) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% - 30px)) scale(0.2) rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-acid-pink selection:text-acid-yellow">
+
+  <!-- ================= 全螢幕 DVD 反彈彩蛋 (吐舌頭) ================= -->
+  <div id="bouncing-head" class="fixed z-50 pointer-events-auto cursor-pointer select-none" style="top: 100px; left: 80px; width: 92px; height: 92px;">
+    <div id="bounce-inner" class="relative w-full h-full rounded-full overflow-hidden border-4 border-acid-pink shadow-[0_0_20px_#FF007F] transition-all duration-150 bg-acid-yellow">
+      <img src="images/face-bounce.png" alt="Bouncing Anomaly" class="w-full h-full object-cover object-center filter contrast-125">
+      <div class="absolute top-1 left-1.5 font-pixel text-[8px] bg-acid-pink text-acid-yellow px-1 font-bold">丹參</div>
+    </div>
+  </div>
+
+  <!-- ================= 頂部重複緊密跑馬燈字條 ================= -->
+  <header class="fixed top-0 left-0 w-full z-40 bg-acid-pink border-b-2 border-acid-yellow overflow-hidden py-1.5 shadow-lg select-none">
+    <div class="flex whitespace-nowrap font-mono text-xs md:text-sm font-black text-white tracking-widest uppercase">
+      <span class="mx-3">★ 2026 DANS3an* // 丹參在這 // 我為甚麼是我 // 甚麼都不會 // 你覺得呢 // 南臺科大視傳 ★</span>
+      <span class="mx-3">★ 2026 DANS3an* // 丹參在這 // 我為甚麼是我 // 甚麼都不會 // 你覺得呢 // 南臺科大視傳 ★</span>
+      <span class="mx-3">★ 2026 DANS3an* // 丹參在這 // 我為甚麼是我 // 甚麼都不會 // 你覺得呢 // 南臺科大視傳 ★</span>
+    </div>
+  </header>
+
+  <!-- ================= 浮動快捷跳轉鍵 ================= -->
+  <aside class="fixed right-4 bottom-6 z-40 flex flex-col gap-3 font-dela text-xs">
+    <a href="#lottery" class="px-4 py-2.5 bg-acid-pink text-acid-yellow border-2 border-acid-yellow rounded-xl shadow-[4px_4px_0px_#00F0FF] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all active:scale-95 text-center">
+      ★ 滿版集集樂 15 孔 ★
+    </a>
+  </aside>
+
+  <!-- ================= 區塊 0：HERO 首頁 (純靜態滿版) ================= -->
+  <section id="hero" class="relative min-h-screen w-full pawnshop-bg flex flex-col justify-between pt-16 pb-8 px-4 sm:px-8 border-b-4 border-black select-none overflow-hidden">
+    
+    <!-- 滿版主標題：丹參在這 -->
+    <div class="w-full text-center mt-4 md:mt-8">
+      <h1 class="pawnshop-title font-dela text-5xl sm:text-7xl md:text-9xl lg:text-[140px] tracking-tight leading-none scale-y-110">
+        丹參在這
+      </h1>
+      <p class="font-mono text-xs sm:text-base font-black text-black tracking-[0.35em] uppercase mt-2 drop-shadow-[0_1px_1px_rgba(255,255,255,0.8)]">
+        DANS3an* // 2005.09.10 // 我為甚麼是我 // 甚麼都不會
+      </p>
+    </div>
+
+    <!-- 中央：彩虹愛心 ＋ 單張純靜態主面皮拓撲框 -->
+    <div class="relative w-full max-w-4xl mx-auto my-6 flex flex-col items-center justify-center">
+      
+      <div class="relative flex items-center justify-center -mb-8 z-10">
+        <div class="w-18 h-18 sm:w-24 sm:h-24 rainbow-heart rounded-full flex items-center justify-center shadow-2xl border-2 border-white -rotate-12">
+          <span class="font-dela text-lg sm:text-xl text-white drop-shadow-md">累</span>
+        </div>
+        <div class="w-20 h-20 sm:w-28 sm:h-28 rainbow-heart rounded-full flex items-center justify-center shadow-2xl border-2 border-white rotate-12 -ml-5">
+          <span class="font-dela text-xl sm:text-2xl text-white drop-shadow-md">淚</span>
+        </div>
+      </div>
+
+      <!-- 靜態主視窗 -->
+      <div class="relative w-full aspect-[2.1/1] rounded-3xl overflow-hidden border-4 border-black bg-black shadow-[12px_12px_0px_#FF007F]">
+        <img src="images/face-unwrap.png" alt="Topology 0910" class="w-full h-full object-cover object-center filter contrast-125">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-acid-cyan/20 pointer-events-none"></div>
+        
+        <span class="absolute top-3 left-4 font-dela text-xs sm:text-sm bg-acid-yellow text-black px-3 py-1 border-2 border-black z-10">
+          TOPOLOGY 0910
+        </span>
+      </div>
+
+      <!-- 底部兩枚貼紙 -->
+      <div class="w-full flex justify-between items-center mt-5 px-2">
+        <div class="bubble-sticker font-dela text-sm sm:text-xl md:text-2xl px-5 py-2 rounded-full border-2 border-acid-pink transform -rotate-3">
+          何を知りたいの？
+        </div>
+        <div class="bg-acid-pink border-2 border-acid-yellow text-acid-yellow font-dela text-sm sm:text-xl px-4 py-1.5 rounded-lg shadow-[4px_4px_0px_#00F0FF] transform rotate-3">
+          HELLO ! 你覺得呢
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 底部導航跳轉列 -->
+    <div class="w-full max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3 font-dela text-xs sm:text-sm text-center">
+      <a href="#dossier" class="py-2.5 bg-black text-acid-lime border-2 border-acid-yellow hover:bg-acid-yellow hover:text-black transition-all shadow-[4px_4px_0px_#FF007F]">
+        01 / 標本規格
+      </a>
+      <a href="#works" class="py-2.5 bg-black text-acid-cyan border-2 border-acid-yellow hover:bg-acid-cyan hover:text-black transition-all shadow-[4px_4px_0px_#FF007F]">
+        02 / 喜歡的人們 (07)
+      </a>
+      <a href="#lottery" class="py-2.5 bg-acid-pink text-acid-yellow border-2 border-acid-yellow hover:bg-white hover:text-black transition-all shadow-[4px_4px_0px_#00F0FF]">
+        03 / 滿版集集樂
+      </a>
+      <a href="#contact" class="py-2.5 bg-black text-acid-pink border-2 border-acid-yellow hover:bg-acid-pink hover:text-black transition-all shadow-[4px_4px_0px_#FF007F]">
+        04 / 終端通報
+      </a>
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       第二頁以下：純白大留白 × 毒蘑菇迷幻致幻視覺
+       ========================================================================= -->
+  <main class="w-full bg-white text-shroom-dark relative pt-24 pb-32">
+
+    <div class="max-w-6xl mx-auto px-6 mb-16 flex justify-between items-center font-mono text-[11px] text-neutral-400 tracking-[0.25em] uppercase border-b border-neutral-100 pb-4">
+      <span>// DICTION-041 // DANSAN SPECIMEN</span>
+      <span>PATTERN DESIGN MANUAL (2026)</span>
+    </div>
+
+    <!-- ================= 區塊 1：DOSSIER 規格標本 ================= -->
+    <section id="dossier" class="max-w-5xl mx-auto px-6 mb-36 relative">
+      <div class="mb-14 text-center sm:text-left relative">
+        <h2 class="text-4xl sm:text-6xl md:text-7xl font-dela text-black leading-tight tracking-tight">
+          視覺の覚醒
+        </h2>
+        <p class="font-mono text-xs sm:text-base text-shroom-hotpink tracking-wider mt-3 font-bold">
+          人類の疲弊，在這裏全部解放しませんか？
+        </p>
+      </div>
+
+      <div class="relative grid md:grid-cols-12 gap-12 items-center">
+        
+        <!-- 左側：頭後桃紅+淺藍+黃色渲染 ＋ 滑鼠懸停變色特效 -->
+        <div class="md:col-span-5 relative flex flex-col items-center justify-center py-10 cursor-pointer">
+          <div class="absolute w-72 h-72 sm:w-80 sm:h-80 trichrome-glow rounded-full pointer-events-none"></div>
+
+          <div class="relative z-10 w-52 sm:w-60 aspect-[1/1.15] flex items-center justify-center">
+            <img src="images/face-resin.png" alt="Resin Head Specimen" class="resin-hover-shift w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(255,0,127,0.4)]">
+          </div>
+
+          <div class="mt-4 font-mono text-[10px] text-neutral-500 font-black tracking-[0.3em] uppercase z-10 bg-white/80 px-2 py-0.5 rounded-full border border-neutral-200">
+            SPECIMEN-0910 // HOVER TO MUTATE
+          </div>
+        </div>
+
+        <!-- 右側：鮮明參數清單 -->
+        <div class="md:col-span-7 space-y-6 md:pl-8">
+          <div class="border-b-2 border-black pb-3 flex justify-between items-end">
+            <div>
+              <span class="font-mono text-xs text-black font-black block tracking-widest">SUB-SECTION A</span>
+              <h3 class="font-dela text-2xl text-black mt-1">擬態本體剖繪</h3>
+            </div>
+            <span class="font-mono text-xs bg-black text-acid-lime border border-black px-2.5 py-0.5 rounded-full font-bold">MUTUAL RECOGNITION</span>
+          </div>
+
+          <ul class="font-mono text-xs sm:text-sm space-y-4">
+            <li class="flex items-baseline border-b border-neutral-200 pb-2.5">
+              <span class="w-36 text-black font-black uppercase tracking-wider text-xs bg-neutral-100 px-2 py-0.5 rounded">代號 / NAME</span>
+              <span class="text-black font-dela text-lg ml-2">丹三 / DANS3an* (張彤)</span>
+            </li>
+            <li class="flex items-baseline border-b border-neutral-200 pb-2.5">
+              <span class="w-36 text-black font-black uppercase tracking-wider text-xs bg-neutral-100 px-2 py-0.5 rounded">編寫日期 / DATE</span>
+              <span class="text-neutral-900 font-bold ml-2">2005.09.10 // 21 YEARS</span>
+            </li>
+            <li class="flex items-baseline border-b border-neutral-200 pb-2.5">
+              <span class="w-36 text-black font-black uppercase tracking-wider text-xs bg-neutral-100 px-2 py-0.5 rounded">據點機構 / HOST</span>
+              <span class="text-neutral-900 font-bold ml-2">南臺科技大學 視覺傳達設計系 大三</span>
+            </li>
+            <li class="flex items-baseline border-b border-neutral-200 pb-2.5">
+              <span class="w-36 text-black font-black uppercase tracking-wider text-xs bg-pink-100 px-2 py-0.5 rounded">擬態自述 / LOG</span>
+              <span class="text-[#FF007F] font-dela text-lg ml-2 drop-shadow-[0_1px_2px_rgba(255,0,127,0.3)]">我為甚麼是我</span>
+            </li>
+            <li class="flex items-baseline border-b border-neutral-200 pb-2.5">
+              <span class="w-36 text-black font-black uppercase tracking-wider text-xs bg-emerald-100 px-2 py-0.5 rounded">解剖工具 / TOOLS</span>
+              <span class="text-[#00C853] font-dela text-lg ml-2 drop-shadow-[0_1px_2px_rgba(0,200,83,0.3)]">甚麼都不會</span>
+            </li>
+            <li class="flex items-baseline pb-1">
+              <span class="w-36 text-black font-black uppercase tracking-wider text-xs bg-purple-100 px-2 py-0.5 rounded">毒性特徵 / TRAIT</span>
+              <span class="text-[#9C27B0] font-dela text-lg ml-2 drop-shadow-[0_1px_2px_rgba(156,39,176,0.3)]">你覺得呢</span>
+            </li>
+          </ul>
+
+          <div class="pt-4 text-right">
+            <span class="font-mono text-xs font-bold text-black border-2 border-black bg-acid-yellow px-3 py-1 rounded-full shadow-[2px_2px_0px_#000000]">
+              STATUS: NON-COMMERCIAL / ACADEMIC
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 區塊 2：我喜歡的人們 (1-7 位彩虹光變色效果) ================= -->
+    <section id="works" class="w-full max-w-7xl mx-auto px-6 sm:px-12 mb-36">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b-2 border-black pb-4 mb-12">
+        <div>
+          <span class="font-mono text-xs text-shroom-hotpink font-bold tracking-[0.25em] block uppercase">// SECTION 02: PRISMATIC LINEUP</span>
+          <h2 class="text-3xl sm:text-5xl font-dela text-black mt-1">我喜歡的人們</h2>
+        </div>
+        <p class="font-mono text-xs text-neutral-500 mt-2 sm:mt-0 tracking-wider">
+          7 ENTITIES OBSERVED // 滑鼠懸停聚焦彩虹光譜變色
+        </p>
+      </div>
+
+      <!-- 7 人橫向立繪：無多餘字環，懸停觸發 1-7 彩虹光芒 -->
+      <div class="group/lineup w-full overflow-x-auto py-12 px-4 flex justify-between items-end gap-6 md:gap-8 lg:gap-10 select-none min-h-[530px]">
+
+        <!-- 01. King Gnu (紅光) -->
+        <div class="group/item relative flex-1 min-w-[150px] max-w-[210px] h-[460px] flex flex-col justify-end items-center cursor-pointer transition-all duration-300 filter blur-[3px] opacity-40 group-hover/lineup:hover:blur-0 group-hover/lineup:hover:opacity-100 group-hover/lineup:hover:scale-105 group-hover/lineup:hover:z-30 rainbow-hover-1">
+          <img src="images/person1.png" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80'" alt="King Gnu" class="h-full w-auto object-contain pointer-events-none filter drop-shadow-lg">
+          <span class="mt-4 font-dela text-xs text-black border-2 border-black px-3 py-1 rounded-full bg-white shadow-[2px_2px_0px_#000000] whitespace-nowrap group-hover/item:bg-red-500 group-hover/item:text-white transition-colors">
+            01. King Gnu
+          </span>
+        </div>
+
+        <!-- 02. 米津玄師 (橘光) -->
+        <div class="group/item relative flex-1 min-w-[150px] max-w-[210px] h-[460px] flex flex-col justify-end items-center cursor-pointer transition-all duration-300 filter blur-[3px] opacity-40 group-hover/lineup:hover:blur-0 group-hover/lineup:hover:opacity-100 group-hover/lineup:hover:scale-105 group-hover/lineup:hover:z-30 rainbow-hover-2">
+          <img src="images/person2.png" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80'" alt="米津玄師" class="h-full w-auto object-contain pointer-events-none filter drop-shadow-lg">
+          <span class="mt-4 font-dela text-xs text-black border-2 border-black px-3 py-1 rounded-full bg-white shadow-[2px_2px_0px_#000000] whitespace-nowrap group-hover/item:bg-orange-500 group-hover/item:text-white transition-colors">
+            02. 米津玄師
+          </span>
+        </div>
+
+        <!-- 03. 藤井風 (黃光) -->
+        <div class="group/item relative flex-1 min-w-[150px] max-w-[210px] h-[460px] flex flex-col justify-end items-center cursor-pointer transition-all duration-300 filter blur-[3px] opacity-40 group-hover/lineup:hover:blur-0 group-hover/lineup:hover:opacity-100 group-hover/lineup:hover:scale-105 group-hover/lineup:hover:z-30 rainbow-hover-3">
+          <img src="images/person3.png" onerror="this.src='https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=80'" alt="藤井風" class="h-full w-auto object-contain pointer-events-none filter drop-shadow-lg">
+          <span class="mt-4 font-dela text-xs text-black border-2 border-black px-3 py-1 rounded-full bg-white shadow-[2px_2px_0px_#000000] whitespace-nowrap group-hover/item:bg-yellow-400 group-hover/item:text-black transition-colors">
+            03. 藤井風
+          </span>
+        </div>
+
+        <!-- 04. ON'O (綠光) -->
+        <div class="group/item relative flex-1 min-w-[150px] max-w-[210px] h-[460px] flex flex-col justify-end items-center cursor-pointer transition-all duration-300 filter blur-[3px] opacity-40 group-hover/lineup:hover:blur-0 group-hover/lineup:hover:opacity-100 group-hover/lineup:hover:scale-105 group-hover/lineup:hover:z-30 rainbow-hover-4">
+          <img src="images/person4.png" onerror="this.src='https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=500&auto=format&fit=crop&q=80'" alt="ON'O" class="h-full w-auto object-contain pointer-events-none filter drop-shadow-lg">
+          <span class="mt-4 font-dela text-xs text-black border-2 border-black px-3 py-1 rounded-full bg-white shadow-[2px_2px_0px_#000000] whitespace-nowrap group-hover/item:bg-emerald-500 group-hover/item:text-white transition-colors">
+            04. ON'O
+          </span>
+        </div>
+
+        <!-- 05. 龍宮城 (青藍光) -->
+        <div class="group/item relative flex-1 min-w-[150px] max-w-[210px] h-[460px] flex flex-col justify-end items-center cursor-pointer transition-all duration-300 filter blur-[3px] opacity-40 group-hover/lineup:hover:blur-0 group-hover/lineup:hover:opacity-100 group-hover/lineup:hover:scale-105 group-hover/lineup:hover:z-30 rainbow-hover-5">
+          <img src="images/person5.png" onerror="this.src='https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500&auto=format&fit=crop&q=80'" alt="龍宮城" class="h-full w-auto object-contain pointer-events-none filter drop-shadow-lg">
+          <span class="mt-4 font-dela text-xs text-black border-2 border-black px-3 py-1 rounded-full bg-white shadow-[2px_2px_0px_#000000] whitespace-nowrap group-hover/item:bg-cyan-500 group-hover/item:text-black transition-colors">
+            05. 龍宮城
+          </span>
+        </div>
+
+        <!-- 06. Starglow (靛藍光) -->
+        <div class="group/item relative flex-1 min-w-[150px] max-w-[210px] h-[460px] flex flex-col justify-end items-center cursor-pointer transition-all duration-300 filter blur-[3px] opacity-40 group-hover/lineup:hover:blur-0 group-hover/lineup:hover:opacity-100 group-hover/lineup:hover:scale-105 group-hover/lineup:hover:z-30 rainbow-hover-6">
+          <img src="images/person6.png" onerror="this.src='https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500&auto=format&fit=crop&q=80'" alt="Starglow" class="h-full w-auto object-contain pointer-events-none filter drop-shadow-lg">
+          <span class="mt-4 font-dela text-xs text-black border-2 border-black px-3 py-1 rounded-full bg-white shadow-[2px_2px_0px_#000000] whitespace-nowrap group-hover/item:bg-blue-600 group-hover/item:text-white transition-colors">
+            06. Starglow
+          </span>
+        </div>
+
+        <!-- 07. SUPER★DRAGON (紫光) -->
+        <div class="group/item relative flex-1 min-w-[150px] max-w-[210px] h-[460px] flex flex-col justify-end items-center cursor-pointer transition-all duration-300 filter blur-[3px] opacity-40 group-hover/lineup:hover:blur-0 group-hover/lineup:hover:opacity-100 group-hover/lineup:hover:scale-105 group-hover/lineup:hover:z-30 rainbow-hover-7">
+          <img src="images/person7.png" onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=80'" alt="SUPER★DRAGON" class="h-full w-auto object-contain pointer-events-none filter drop-shadow-lg">
+          <span class="mt-4 font-dela text-xs text-black border-2 border-black px-3 py-1 rounded-full bg-white shadow-[2px_2px_0px_#000000] whitespace-nowrap group-hover/item:bg-purple-600 group-hover/item:text-white transition-colors">
+            07. SUPER★DRAGON
+          </span>
+        </div>
+
+      </div>
+
+      <div class="text-center font-mono text-xs text-neutral-400 mt-6 tracking-widest">
+        LINEUP LOADED // 07 SPECIMENS MUTUALLY RECOGNIZED.
+      </div>
+    </section>
+
+    <!-- ================= 區塊 3：滿版大頁面「集集樂」（我有病 ＋ 狂躁長輩圖拼貼） ================= -->
+    <section id="lottery" class="w-full max-w-5xl mx-auto px-4 sm:px-6 mb-36 select-none">
+      
+      <div class="w-full burst-pattern border-8 border-black rounded-[40px] p-6 sm:p-12 shadow-[20px_20px_0px_#FF007F] relative overflow-hidden">
+        
+        <!-- 左側貼紙：「我有病」 -->
+        <div class="hidden md:block absolute -left-2 top-8 bg-yellow-300 border-4 border-black p-2 font-dela text-2xl text-black leading-tight shadow-[4px_4px_0px_#000000] transform -rotate-6 z-20">
+          我<br>有<br>病
+        </div>
+        <!-- 右側貼紙：「別跟我說話」 -->
+        <div class="hidden md:block absolute -right-2 top-12 bg-white border-4 border-black p-2 font-dela text-2xl text-red-600 leading-tight shadow-[4px_4px_0px_#000000] transform rotate-6 z-20">
+          別<br>跟<br>我<br>說<br>話
+        </div>
+
+        <div class="text-center relative z-10">
+          
+          <div class="inline-block border-6 border-black bg-[#FF007F] text-[#FFEE00] font-dela text-4xl sm:text-7xl px-12 py-4 rounded-3xl tracking-[0.2em] shadow-[8px_8px_0px_#000000] transform -rotate-1">
+            集 集 樂
+          </div>
+
+          <div class="mt-6 inline-block bg-black text-[#FFEE00] font-mono text-xs sm:text-base font-black px-4 py-1.5 rounded-lg tracking-widest uppercase border-2 border-white shadow-md">
+            ★ 怎麼要放棄了嗎？！ // 百分之百不中獎 // 人類人累人淚 ★
+          </div>
+
+          <!-- 15 孔戳戳樂孔洞盤 -->
+          <div class="my-8 max-w-3xl mx-auto bg-gradient-to-r from-[#FF007F] via-[#FF5500] to-[#FFEE00] p-4 sm:p-8 rounded-[36px] border-6 border-black shadow-[10px_10px_0px_#000000]">
+            
+            <div class="grid grid-cols-5 gap-2.5 sm:gap-5 justify-items-center bg-black/85 p-4 sm:p-8 rounded-[28px] border-4 border-black">
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+              <button class="stamp-circle w-12 h-12 sm:w-20 sm:h-20 rounded-full border-4 border-[#FFEE00] bg-[#FFEE00] text-black flex items-center justify-center font-dela text-sm sm:text-2xl hover:scale-110 active:scale-90 transition-all shadow-[0_0_15px_#FFEE00] cursor-pointer"></button>
+            </div>
+
+          </div>
+
+          <p id="lottery-status" class="font-dela text-lg sm:text-3xl text-black bg-white inline-block px-6 py-2 border-4 border-black rounded-xl shadow-[4px_4px_0px_#000000]">
+            點擊上方孔洞戳破蓋印 (0/15)
+          </p>
+
+          <div class="mt-4 font-dela text-sm sm:text-base text-black tracking-wider">
+            【集滿 15 個印章即可兌換：繼續趕作業一次】
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= 區塊 4：CONTACT 終端 (純文字、無邊框背景) ================= -->
+    <section id="contact" class="max-w-4xl mx-auto px-6 text-center">
+      
+      <div class="py-12">
+        <span class="font-mono text-xs text-shroom-hotpink font-bold uppercase tracking-widest block mb-3">
+          SIGNAL TRANSMISSION
+        </span>
+        <h3 class="font-dela text-3xl sm:text-5xl text-black mb-4">發送訊號攔截</h3>
+        <p class="font-mono text-xs sm:text-sm text-neutral-600 mb-10 max-w-md mx-auto leading-relaxed">
+          我為甚麼是我 // 如果你的肉體也感到了疲憊，關我甚麼事。
+        </p>
+
+        <!-- 純文字連結 -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-8 sm:gap-14 font-mono text-sm sm:text-base font-black">
+          <a href="mailto:4b3j2046@stust.edu.tw" class="text-black hover:text-shroom-hotpink transition-colors tracking-wider">
+            EMAIL: 4b3j2046@stust.edu.tw
+          </a>
+          <a href="https://instagram.com/4.zds_" target="_blank" class="text-black hover:text-shroom-hotpink transition-colors tracking-wider">
+            IG: @4.zds_
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-20 font-mono text-[10px] text-neutral-400 tracking-[0.25em]">
+        © 2026 DANS3an* // 2005.09.10 // ALL RIGHTS RESERVED.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= JavaScript 動態核心 ================= -->
+  <script>
+    // 1. 七彩亮晶晶氣泡與星芒游標拖尾特效
+    (function initSparkleCursor() {
+      const colors = ['#00F0FF', '#FF007F', '#FFEE00', '#B7FF2A', '#A855F7', '#FF80BF', '#7DF9FF'];
+      let lastTime = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        // 限制生成頻率，確保平滑不卡頓
+        if (now - lastTime < 35) return;
+        lastTime = now;
+
+        const particle = document.createElement('div');
+        particle.className = 'sparkle-particle';
+        
+        const isSparkle = Math.random() > 0.45; // 隨機生成氣泡或星芒
+        const size = Math.floor(Math.random() * 9) + 6; // 6px ~ 14px
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        particle.style.left = `${e.clientX}px`;
+        particle.style.top = `${e.clientY}px`;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        if (isSparkle) {
+          // 四角十字星芒
+          particle.innerHTML = `<svg viewBox="0 0 24 24" fill="${color}" style="width: 100%; height: 100%; filter: drop-shadow(0 0 3px ${color});"><path d="M12 0 L14 9 L23 12 L14 15 L12 24 L10 15 L1 12 L10 9 Z"/></svg>`;
+        } else {
+          // 晶瑩七彩小氣泡
+          particle.style.borderRadius = '50%';
+          particle.style.background = `radial-gradient(circle at 35% 35%, #FFFFFF 0%, ${color} 65%, rgba(0,0,0,0.2) 100%)`;
+          particle.style.border = '1px solid rgba(255,255,255,0.85)';
+          particle.style.boxShadow = `0 0 6px ${color}`;
+        }
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+          particle.remove();
+        }, 850);
+      });
+    })();
+
+    // 2. DVD 反彈頭像
+    (function initBounce() {
+      const box = document.getElementById('bouncing-head');
+      const inner = document.getElementById('bounce-inner');
+      if (!box || !inner) return;
+
+      let x = 40, y = 120;
+      let vx = 2.2, vy = 2.0;
+      const size = 92;
+
+      const filters = [
+        'contrast(130%)',
+        'invert(1) hue-rotate(90deg)',
+        'hue-rotate(180deg) saturate(200%)',
+        'grayscale(1) contrast(200%)',
+        'sepia(0.8) hue-rotate(-50deg)'
+      ];
+      let fIndex = 0;
+
+      function update() {
+        x += vx;
+        y += vy;
+        const maxX = window.innerWidth - size;
+        const maxY = window.innerHeight - size;
+
+        let hit = false;
+        if (x <= 0 || x >= maxX) { vx = -vx; hit = true; }
+        if (y <= 0 || y >= maxY) { vy = -vy; hit = true; }
+
+        if (hit) {
+          fIndex = (fIndex + 1) % filters.length;
+          inner.style.filter = filters[fIndex];
+        }
+
+        box.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+        box.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+
+        requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+
+      box.addEventListener('click', () => {
+        vx *= 1.4; vy *= 1.4;
+        setTimeout(() => {
+          vx = (vx > 0 ? 1 : -1) * 2.2;
+          vy = (vy > 0 ? 1 : -1) * 2.0;
+        }, 1000);
+      });
+    })();
+
+    // 3. 狂躁長輩圖集集樂 15 孔戳戳樂
+    const statusText = document.getElementById('lottery-status');
+    const stampBtns = document.querySelectorAll('.stamp-circle');
+    let count = 0;
+    const words = ["累", "淚", "人", "偽", "空", "死", "卷", "困", "假", "夢", "虛", "無", "停", "冷", "散"];
+
+    stampBtns.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        if (!btn.innerText) {
+          btn.innerText = words[idx % words.length];
+          btn.style.backgroundColor = '#FF007F';
+          btn.style.color = '#FFEE00';
+          btn.style.borderColor = '#00F0FF';
+          btn.style.boxShadow = '0 0 20px #FF007F';
+          btn.classList.add('scale-105');
+          count++;
+          statusText.innerText = `已戳破蓋印 (${count}/15) // 人類人累人淚`;
+          if (count === 15) {
+            statusText.innerText = "【恭喜戳滿 15 孔】獲得：繼續趕作業一次。";
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
